@@ -42,3 +42,8 @@ Scenario: Dummy Scenario
 Given lore
 When ipsum
 Then dolor
+
+Scenario: Dummy Scenario
+Given lore
+When ipsum
+Then dolor
