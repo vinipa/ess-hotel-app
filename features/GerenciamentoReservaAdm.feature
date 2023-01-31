@@ -32,18 +32,3 @@ When they access the reservation management page
 And they click to cancel the reservation
 Then the house owner can't see this reservation as confirmed anymore
 And the user who reservated the house receives a notification that the reservation was canceled
-
-Scenario: Dummy Scenario
-Given lore
-When ipsum
-Then dolor
-
-Scenario: Dummy Scenario
-Given lore
-When ipsum
-Then dolor
-
-Scenario: Dummy Scenario
-Given lore
-When ipsum
-Then dolor
