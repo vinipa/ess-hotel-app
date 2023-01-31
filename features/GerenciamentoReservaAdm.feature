@@ -26,9 +26,9 @@ Then the time frame for this reservation is displayed
 And the user who reservated information is displayed
 And the price for the reservation is displayed
 
-Scenario: Cenceling a reservation
+Scenario: Canceling a reservation
 Given the house owner has a confirmed reservation
 When they access the reservation management page
 And they click to cancel the reservation
 Then the house owner can't see this reservation as confirmed anymore
-And the user who reservated the house receives a notification that the reservation was 
+And the user who reservated the house receives a notification that the reservation was canceled
