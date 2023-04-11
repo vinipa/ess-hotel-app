@@ -58,7 +58,6 @@ const ReservationListHost = ({ reservations, userId }: ReservationProps) => {
   return (
     
     <div className='bothLists'>
-      <p>{reservations.length }</p>
       <div className='singleLists'>
         <h1 className='textsReservas'>Reservas confirmadas</h1>
         {confirmedReservations.map((reservation) => (
