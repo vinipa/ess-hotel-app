@@ -1,0 +1,32 @@
+.contentTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(122, 117, 111, 0.2);;
+    padding: 10px 20px;
+  }
+  
+  .texts {
+    margin-left: 50px;
+    font-family: "TrajanusBricks";
+    color: black;
+    font-size: 48px;
+    font-weight: bolder;
+  }
+  
+  .reservations_Switch_Button {
+    all: unset;
+    font-family: "Nunito Sans";
+    font-size: 18px;
+    cursor: pointer;
+    background: #2d3138;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+  }
+  
+  .divButton {
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+  }

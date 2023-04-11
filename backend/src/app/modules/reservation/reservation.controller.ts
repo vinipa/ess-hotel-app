@@ -8,7 +8,6 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import UserContactRepository from 'src/infra/database/repositories/ADMUserContactRepository';
 import { ReservationService } from './reservation.service';
 import {
   AcceptReservationDTO,
@@ -19,7 +18,7 @@ import { ReservationRepository } from 'src/infra/database/repositories/Reservati
 import { ReservationConnectionRepository } from 'src/infra/database/repositories/ReservationConnectionRepository';
 import UserRepository from 'src/infra/database/repositories/UserRepository';
 import FavoritesRepository from 'src/infra/database/repositories/FavoritesRepository';
-import { MailService } from 'src/mail/mail.service'; 
+import { MailService } from 'src/mail/mail.service';
 import { EvaluationCreationDTO } from 'src/infra/database/interfaces/evalutation.interface';
 import EvaluationRepository from 'src/infra/database/repositories/EvaluationRepository';
 
@@ -58,6 +57,13 @@ export class ReservationController {
     return this.reservationRepository.getWithParams(params);
   }
 
+  @Get('/solicitations')
+  async getAllReservationSolicitation() {
+    const data =
+      await this.reservationRepository.getAllSolicitationsOfReservations();
+    return data;
+  }
+
   @Get(':Id')
   async getReservationById(@Param('Id') Id: string) {
     const reservation = await this.reservationRepository.getReservationById(Id);
@@ -94,10 +100,15 @@ export class ReservationController {
       acceptReservation.id,
       acceptReservation.accepted,
     );
-    const reservationId = await this.reservationConnectionRepository.getConnectionById(acceptReservation.id);
-    const userGotAccepted = await this.userRepository.getUserById(reservationId.userId)
+    const reservationId =
+      await this.reservationConnectionRepository.getConnectionById(
+        acceptReservation.id,
+      );
+    const userGotAccepted = await this.userRepository.getUserById(
+      reservationId.userId,
+    );
 
-    await this.mailService.sendUserConfirmation(userGotAccepted)
+    await this.mailService.sendUserConfirmation(userGotAccepted);
   }
 
   @Get('/created/:id')
@@ -194,12 +205,5 @@ export class ReservationController {
       evaluations: e.evaluations[e.evaluations.length - 1],
     }));
     return response;
-  }
-
-  @Get('/solicitations')
-  async getAllReservationSolicitation() {
-    const data =
-      await this.reservationRepository.getAllSolicitationsOfReservations();
-    return data;
   }
 }

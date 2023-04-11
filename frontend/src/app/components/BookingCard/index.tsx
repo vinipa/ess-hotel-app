@@ -40,17 +40,13 @@ function BookingCard({ guestNumber, radioHandler, setPlusIcon, setMinusIcon }: B
                     <DescriptionReservationMakeText>
                         Hóspedes
                     </DescriptionReservationMakeText>
-                    <ClickableIcon
-                        onClick={setPlusIcon} data-testid="plus-icon"
-                    >
+                    <ClickableIcon onClick={setPlusIcon} data-testid="plus-icon">
                         {IconPlus}
                     </ClickableIcon>
                     <DescriptionReservationMakeText>
                         {guestNumber}
                     </DescriptionReservationMakeText>
-                    <ClickableIcon
-                        onClick={setMinusIcon} data-testid="minus-icon"
-                    >
+                    <ClickableIcon onClick={setMinusIcon} data-testid="minus-icon">
                         {IconMinus}
                     </ClickableIcon>
                 </Row>
@@ -73,7 +69,6 @@ function BookingCard({ guestNumber, radioHandler, setPlusIcon, setMinusIcon }: B
                         </DescriptionReservationMakeText>
                     </RadioLabel>
                 </label>
-
                 <RadioLabel>
                     <input
                         type="radio"
