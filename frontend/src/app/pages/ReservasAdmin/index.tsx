@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ReservationList from '../../components/ReservationListAdmin';
 import './index.css';
+import { useSession } from "../../providers/SessionContext";
 interface User {
   id: string;
   email: string;
@@ -43,6 +44,9 @@ interface ReservationProps {
 const ReservasAdmin: React.FC = () => {
   
   const [reservations, setReservations] = useState([]);
+  
+  const { session } = useSession();
+
 
   const createReservation = (data: ReservationProps) => {
     const reservation = {
@@ -76,11 +80,18 @@ const ReservasAdmin: React.FC = () => {
     return <div>No reservations to display.</div>;
   }
 
+  if (!session.ADM) {
+    return (  
+      <div>
+          Nada para mostrar aqui
+      </div>
+    );
+  };
+
   return (  
     <div>
       <ReservationList reservations={reservations} />
     </div>
-
   );
 };
 
