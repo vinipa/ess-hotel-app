@@ -15,6 +15,7 @@ export class MockAuthService extends AuthService {
     return {
       token: 'mockToken',
       userName: 'mockUserName',
+      ADM: false,
     };
   }
 
@@ -67,6 +68,7 @@ export class MockedUserRepository extends UserRepository {
       name: 'Teste',
       cpf: '12345678912',
       email,
+      role: 'USER',
     });
 
     return Promise.resolve(user);

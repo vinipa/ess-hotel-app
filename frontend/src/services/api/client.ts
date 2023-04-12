@@ -140,4 +140,16 @@ export class APIClient {
       evaluation
     );
   }
+
+  async setFavoritesReservation(
+    userId: string,
+    reservationId: string,
+    setted: boolean
+  ) {
+    await this.axiosClient.patch("/reservation/favorite", {
+      userId,
+      reservationId,
+      setted,
+    });
+  }
 }

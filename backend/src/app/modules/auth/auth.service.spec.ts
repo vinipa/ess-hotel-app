@@ -34,6 +34,7 @@ describe('AuthService', () => {
     const expectedData = {
       token: '123456',
       userName: 'Teste',
+      ADM: false,
     };
 
     const response = await service.validateLogin({ email: 'Teste', password });

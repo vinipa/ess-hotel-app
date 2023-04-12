@@ -58,6 +58,13 @@ export class ReservationController {
     return this.reservationRepository.getWithParams(params);
   }
 
+  @Get('/solicitations')
+  async getAllReservationSolicitation() {
+    const data =
+      await this.reservationRepository.getAllSolicitationsOfReservations();
+    return data;
+  }
+
   @Get(':Id')
   async getReservationById(@Param('Id') Id: string) {
     const reservation = await this.reservationRepository.getReservationById(Id);
@@ -196,10 +203,5 @@ export class ReservationController {
     return response;
   }
 
-  @Get('/solicitations')
-  async getAllReservationSolicitation() {
-    const data =
-      await this.reservationRepository.getAllSolicitationsOfReservations();
-    return data;
-  }
+
 }

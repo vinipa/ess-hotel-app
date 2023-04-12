@@ -6,6 +6,8 @@ import {
 import "./index.css";
 import { useState } from "react";
 import { PropsEvaluations } from "../EvaluationField";
+import { useSession } from "../../providers/SessionContext";
+import { APIClient } from "../../../services/api/client";
 
 interface ImageCardProps {
   width: string;
@@ -19,7 +21,6 @@ interface ImageCardProps {
   price: string;
   favoritePage: boolean;
   descriptionFull: boolean;
-  setFavorites?: () => null;
 }
 
 function ImageCard({
@@ -34,7 +35,6 @@ function ImageCard({
   name,
   favoritePage,
   descriptionFull,
-  setFavorites,
 }: ImageCardProps) {
   const [starActive, setStarActive] = useState(true);
 
@@ -65,6 +65,20 @@ function ImageCard({
     }
   };
 
+  const { session } = useSession();
+
+  const removeFavorites = async () => {
+    const apiClient = new APIClient();
+
+    try {
+      const userId = await apiClient.getIdByToken(session.token);
+      await apiClient.setFavoritesReservation(userId, id, false);
+      window.location.reload();
+    } catch (err) {
+      throw new Error("Error while getting users");
+    }
+  };
+
   return (
     <Link
       to={linkTo(favoritePage, descriptionFull, id) || "undefined"}
@@ -90,7 +104,7 @@ function ImageCard({
               className="starFavoriteButton"
               onMouseOver={() => setStarActive(false)}
               onMouseOut={() => setStarActive(true)}
-              onClick={setFavorites}
+              onClick={removeFavorites}
             >
               {starActive ? IconStarFavoritesActive : IconStarFavoritesDesable}
             </button>

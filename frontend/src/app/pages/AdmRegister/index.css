@@ -1,34 +1,51 @@
 .adm-screen-container {
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
   width: 100%;
+  align-items: center;
+  padding-bottom: 30px;
 }
 
 .adm-screen-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: start;
 }
 
-.input-wrapper {
-  display: flex !important;
+.session1,
+.session2 {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.session2 {
+  margin-bottom: 40px;
+}
+
+.leftAdmPage,
+.rightAdmPage {
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
-  height: 400px;
-  width: 100%;
-}
-
-.input-wrapper label {
-  font-size: 16px;
-  color: rgba(0, 0, 0, 0.6);
+  gap: 25px;
 }
 
 .input-div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 8px;
+}
+
+.input-div input {
+  padding: 16px !important;
+  width: 600px !important;
+  box-sizing: content-box !important;
+  height: 16px !important;
+  border-radius: 4px !important;
+  border: 1px solid #ddd !important;
+}
+
+.input-div input:focus {
+  outline: none;
 }

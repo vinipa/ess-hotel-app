@@ -1,10 +1,4 @@
-import {
-  useState,
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-} from "react";
+import { useState, createContext, ReactNode, useContext } from "react";
 
 const SessionContext = createContext({} as SessionContextInterface);
 
@@ -18,6 +12,7 @@ interface SessionContextInterface {
 interface ObjSessionContextInterface {
   token: string;
   userName: string;
+  ADM: boolean;
 }
 
 interface SessionProviderProps {
@@ -29,6 +24,7 @@ export const SessionProvider = ({ children }: SessionProviderProps) => {
     JSON.parse(window.localStorage.getItem("sessionData") as string) || {
       token: "",
       userName: "",
+      ADM: false,
     }
   );
 

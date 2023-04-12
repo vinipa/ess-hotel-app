@@ -1,0 +1,27 @@
+.bothLists{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.singleLists{
+    width: 30%;
+    padding-right: 10px;
+}
+
+.textsReservas {
+    margin-left: 25px;
+    font-family: "TrajanusBricks";
+    color: black;
+    font-size: 35px;
+    font-weight: lighter;
+}
+
+.noData{
+    font-family: "TrajanusBricks";
+    color: black;
+    font-size: 35px;
+    font-weight: lighter;
+    justify-content: center;
+    margin-top: 50px;
+}

@@ -84,6 +84,7 @@ export default function AdmRegisterPage() {
 
     try {
       const api = new APIClient();
+      console.log(api)
       await api.createAdmUser(data);
       setSuccess(true);
     } catch (e) {
@@ -132,152 +133,149 @@ export default function AdmRegisterPage() {
       <div className="adm-screen-container">
         <div className="adm-screen-wrapper">
           <h2>INFORMAÇÕES PESSOAIS</h2>
-          <div className="input-wrapper">
-            <div className="input-div">
-              <label>Nome Completo *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("name", e.target.value);
-                }}
-                type="text"
-                placeholder="Joaquim Pinto"
-              />
+          <div className="session1">
+            <div className="leftAdmPage">
+              <div className="input-div">
+                <label>Nome Completo *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("name", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Joaquim Pinto"
+                />
+              </div>
+              <div className="input-div">
+                <label>Email *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("email", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="joca@email.com"
+                />
+              </div>
+              <div className="input-div">
+                <label>Número de telefone *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("phone", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="(81) 9 9999-9999"
+                />
+              </div>
             </div>
-            <div className="input-div">
-              <label>Email *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("email", e.target.value);
-                }}
-                type="text"
-                placeholder="joca@email.com"
-              />
-            </div>
-            <div className="input-div">
-              <label>Número de telefone *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("phone", e.target.value);
-                }}
-                type="text"
-                placeholder="(81) 9 9999-9999"
-              />
-            </div>
-            <div className="input-div">
-              <label>Senha inicial *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("password", e.target.value);
-                }}
-                type="password"
-                placeholder="*********"
-              />
-            </div>
-            <div className="input-div">
-              <label>Repetir senha inicial *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("repassword", e.target.value);
-                }}
-                type="password"
-                placeholder="*********"
-              />
-            </div>
-            <div className="input-div">
-              <label>CPF *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("cpf", e.target.value);
-                }}
-                type="text"
-                placeholder="123.123.123-12"
-              />
+            <div className="rightAdmPage">
+              <div className="input-div">
+                <label>Senha inicial *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("password", e.target.value);
+                  }}
+                  type="password"
+                  placeholder="*********"
+                />
+              </div>
+              <div className="input-div">
+                <label>Repetir senha inicial *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("repassword", e.target.value);
+                  }}
+                  type="password"
+                  placeholder="**********"
+                />
+              </div>
+              <div className="input-div">
+                <label>CPF *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("cpf", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="123.123.123-12"
+                />
+              </div>
             </div>
           </div>
         </div>
         <div className="adm-screen-wrapper">
           <h2>ENDEREÇO</h2>
-          <div className="input-wrapper">
-            <div className="input-div">
-              <label>Estado *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("state", e.target.value);
-                }}
-                type="text"
-                placeholder="Pernambuco"
-              />
+          <div className="session2">
+            <div className="leftAdmPage">
+              <div className="input-div">
+                <label>Estado *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("state", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Pernambuco"
+                />
+              </div>
+              <div className="input-div">
+                <label>Cidade *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("city", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Recife"
+                />
+              </div>
+              <div className="input-div">
+                <label>Bairro *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("neighborhood", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Boa Viagem"
+                />
+              </div>
             </div>
-            <div className="input-div">
-              <label>Cidade *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("city", e.target.value);
-                }}
-                type="text"
-                placeholder="Recife"
-              />
-            </div>
-            <div className="input-div">
-              <label>Bairro *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("neighborhood", e.target.value);
-                }}
-                type="text"
-                placeholder="Boa Viagem"
-              />
-            </div>
-            <div className="input-div">
-              <label>Rua *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("street", e.target.value);
-                }}
-                type="password"
-                placeholder="Rua das alamedas"
-              />
-            </div>
-            <div className="input-div">
-              <label>Complemento *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("complement", e.target.value);
-                }}
-                type="password"
-                placeholder="N 123, Apto 101"
-              />
-            </div>
-            <div className="input-div">
-              <label>Referência *</label>
-              <Input
-                onChange={(e) => {
-                  handleInputGeneric("reference", e.target.value);
-                }}
-                type="text"
-                placeholder="Próximo a padaria Doce Pão"
-              />
+            <div className="rightAdmPage">
+              <div className="input-div">
+                <label>Rua *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("street", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Rua das alamedas"
+                />
+              </div>
+              <div className="input-div">
+                <label>Complemento *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("complement", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="N 123, Apto 101"
+                />
+              </div>
+              <div className="input-div">
+                <label>Referência *</label>
+                <Input
+                  onChange={(e) => {
+                    handleInputGeneric("reference", e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Próximo a padaria Doce Pão"
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            margin: "auto",
-            marginTop: "24px",
+        <CustomButton
+          large
+          title={"Cadastrar Administrador"}
+          onClick={() => {
+            registerAdmin(registerInfo);
           }}
-        >
-          <CustomButton
-            large
-            title={"Cadastrar Administrador"}
-            onClick={() => {
-              registerAdmin(registerInfo);
-            }}
-          ></CustomButton>
-        </div>
+        ></CustomButton>
       </div>
     </>
   );

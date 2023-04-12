@@ -31,6 +31,7 @@ describe('AuthController', () => {
     const expectedData = {
       token: 'mockToken',
       userName: 'mockUserName',
+      ADM: false,
     };
 
     const response = await controller.userLogin({} as UserAuthDTO);
