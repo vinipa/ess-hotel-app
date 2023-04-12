@@ -37,7 +37,6 @@ const validationSchema = () =>
     budget: Yup.number()
       .required("O valor da diária é obrigatório")
       .typeError("O valor da diária deve ser um número")
-      .positive("O valor da diária deve ser positivo")
       .min(0, "Digite um valor válido"),
     bedrooms: Yup.number()
       .typeError("O número de quartos deve ser um número")
@@ -95,10 +94,11 @@ export const ReservationForm: React.FC = () => {
       values: FormValues,
       { setSubmitting }: FormikHelpers<FormValues>
     ) => {
-      console.log("Submeti")
       const apiClient = new APIClient();
 
       try {
+
+        
         const id = await apiClient.getIdByToken(session.token);
 
         await apiClient.createReservation({
