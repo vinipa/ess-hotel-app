@@ -91,10 +91,9 @@ function ReservationItem({ reservation, renderType }: ReservationProps) {
               <p className="reservationDates" style={{ paddingBottom: "20px" }}>Check-out: {reservation.reservationDetails.checkOut}</p>
             </div>
             <div className="reservationActions">
-              <button className="reservationAction" onClick={() => handleCancelClick(reservation.id)}>
-                Cancelar
+              <button className="reservationCancelar" onClick={() => handleCancelClick(reservation.id)}>
+                CANCELAR
               </button>
-              {reservation.user && <p>{reservation.user.cpf}</p>}
             </div>
           </div>
         </div>
@@ -113,14 +112,14 @@ function ReservationItem({ reservation, renderType }: ReservationProps) {
               <p className="reservationDates" style={{ paddingBottom: "20px" }}>Check-out: {reservation.reservationDetails.checkOut}</p>
             </div>
             <div className="reservationActions">
+              <button className="reservationCancelar" onClick={() => handleCancelClick(reservation.id)}>
+                CANCELAR
+              </button>
               {!(reservation.accepted == 'aceito') && (
-                <button className="reservationAction" onClick={() => handleAcceptClick(reservation.id)}>
-                  Aceitar
+                <button className="reservationAceitar" onClick={() => handleAcceptClick(reservation.id)}>
+                  ACEITAR
                 </button>
               )}
-              <button className="reservationAction" onClick={() => handleCancelClick(reservation.id)}>
-                Cancelar
-              </button>
             </div>
 
           </div>
@@ -140,14 +139,14 @@ function ReservationItem({ reservation, renderType }: ReservationProps) {
               <p className="reservationDates" style={{ paddingBottom: "20px" }}>Check-out: {reservation.reservationDetails.checkOut}</p>
             </div>
             <div className="reservationActions">
+              <button className="reservationCancelar" onClick={() => handleCancelClick(reservation.id)}>
+                CANCELAR
+              </button>
               {!(reservation.accepted == 'aceito') && (
-                <button className="reservationAction" onClick={() => handleAcceptClick(reservation.id)}>
-                  Aceitar
+                <button className="reservationAceitar" onClick={() => handleAcceptClick(reservation.id)}>
+                  ACEITAR
                 </button>
               )}
-              <button className="reservationAction" onClick={() => handleCancelClick(reservation.id)}>
-                Cancelar
-              </button>
             </div>
           </div>
           <div>
