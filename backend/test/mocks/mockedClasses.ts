@@ -1,8 +1,6 @@
 import { AuthService } from 'src/app/modules/auth/auth.service';
-import { UserAuthDTO } from 'src/app/modules/auth/interfaces';
 import { UserService } from 'src/app/modules/user/user.service';
 import { UserCreationDTO } from 'src/infra/database/interfaces/user.interface';
-import { ADMUserContactDTO } from 'src/infra/database/interfaces/userContact.interface';
 import UserContactRepository from 'src/infra/database/repositories/ADMUserContactRepository';
 import UserRepository from 'src/infra/database/repositories/UserRepository';
 import { ADMUserContact } from 'src/infra/database/typeorm/entities/ADMUserContact.entity';
@@ -11,7 +9,7 @@ import { JWTService } from 'src/utils/auth/jwt.service';
 import { EncryptService } from 'src/utils/encrypt/encrypt.service';
 
 export class MockAuthService extends AuthService {
-  async validateLogin(userAuthDTO: UserAuthDTO) {
+  async validateLogin() {
     return {
       token: 'mockToken',
       userName: 'mockUserName',
@@ -19,17 +17,17 @@ export class MockAuthService extends AuthService {
     };
   }
 
-  async validateTokenAndReturnId(token: string) {
+  async validateTokenAndReturnId() {
     return 'mockId';
   }
 }
 
 export class MockedJWTService extends JWTService {
-  getJWT(idUser: string) {
+  getJWT() {
     return '123456';
   }
 
-  async validateJWT(token: string) {
+  async validateJWT() {
     return Promise.resolve('12345');
   }
 }
@@ -39,11 +37,11 @@ export class MockedEncryptService extends EncryptService {
     return 'generateId';
   }
 
-  getPassword(password: string) {
+  getPassword() {
     return 'generatePassword' as unknown as Buffer;
   }
 
-  validatePassword(password: string, hash: string) {
+  validatePassword() {
     return true;
   }
 }
@@ -73,7 +71,7 @@ export class MockedUserRepository extends UserRepository {
 
     return Promise.resolve(user);
   }
-  createUser(user: UserCreationDTO): Promise<void> {
+  createUser(): Promise<void> {
     return Promise.resolve();
   }
   createAdminUser(user: UserCreationDTO): Promise<User> {
@@ -108,7 +106,7 @@ export class MockedUserRepository extends UserRepository {
 }
 
 export class MockedUserContactRepository extends UserContactRepository {
-  getContactByUserId(id: string): Promise<ADMUserContact> {
+  getContactByUserId(): Promise<ADMUserContact> {
     const contact = new ADMUserContact();
 
     Object.assign(contact, {
@@ -125,7 +123,7 @@ export class MockedUserContactRepository extends UserContactRepository {
     return Promise.resolve(contact);
   }
 
-  createContact(contact: ADMUserContactDTO): Promise<ADMUserContact> {
+  createContact(): Promise<ADMUserContact> {
     const newContact = new ADMUserContact();
 
     Object.assign(newContact, {
