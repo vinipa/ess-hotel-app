@@ -156,13 +156,51 @@ export class MockedUserContactRepository extends UserContactRepository {
   }
 }
 
-export class MockedUserService extends UserService {}
+export class MockedUserService extends UserService { }
 export class MockedReservationRepository extends ReservationRepository {
   getReservations(): Promise<Reservation[]> {
-    throw new Error('Method not implemented.');
+    return Promise.resolve([
+      {
+        id: "13200fde-b393-4338-a943-16d2a6e321f6",
+        name: "Praia em Barra Grande1111",
+        city: "Barra Grande",
+        street: "Rua Inventada",
+        streetNumber: 915,
+        cep: "457456443-1331",
+        checkIn: "10/04/2022",
+        checkOut: "30/08/2024",
+        guests: 50,
+        budget: 2000,
+        additionalInfo: "Um lugar bem distante",
+        bedrooms: 5,
+        beds: 5,
+        bathrooms: 8,
+        photos: [],
+        owner: "1d97c5c2-bcdd-4834-bbed-c23efaba06ca"
+      }
+    ]);
   }
   getReservationById(id: string): Promise<Reservation> {
-    throw new Error('Method not implemented.');
+    return Promise.resolve(
+      {
+        id: "13200fde-b393-4338-a943-16d2a6e321f6",
+        name: "Praia em Barra Grande1111",
+        city: "Barra Grande",
+        street: "Rua Inventada",
+        streetNumber: 915,
+        cep: "457456443-1331",
+        checkIn: "10/04/2022",
+        checkOut: "30/08/2024",
+        guests: 50,
+        budget: 2000,
+        additionalInfo: "Um lugar bem distante",
+        bedrooms: 5,
+        beds: 5,
+        bathrooms: 8,
+        photos: [],
+        owner: "1d97c5c2-bcdd-4834-bbed-c23efaba06ca"
+      }
+    );
   }
   getReservationByCEP(cep: string): Promise<Reservation> {
     throw new Error('Method not implemented.');
@@ -180,7 +218,26 @@ export class MockedReservationRepository extends ReservationRepository {
     throw new Error('Method not implemented.');
   }
   getWithParams(filters: FilterParams): Promise<Reservation[]> {
-    throw new Error('Method not implemented.');
+    return Promise.resolve([
+      {
+        id: "13200fde-b393-4338-a943-16d2a6e321f6",
+        name: "Praia em Recife",
+        city: "Recife",
+        street: "Rua Inventada",
+        streetNumber: 915,
+        cep: "457456443-1331",
+        checkIn: "10/04/2022",
+        checkOut: "30/08/2024",
+        guests: 50,
+        budget: 2000,
+        additionalInfo: "Um lugar bem distante",
+        bedrooms: 5,
+        beds: 5,
+        owner: "1d97c5c2-bcdd-4834-bbed-c23efaba06ca",
+        bathrooms: 8,
+        photos: [],
+      }
+    ]);
   }
   getCompletedEvaluationByUserId(id: string): Promise<CompletedReservation[]> {
     throw new Error('Method not implemented.');
@@ -228,17 +285,17 @@ export class MockedReservationRepository extends ReservationRepository {
   }
 }
 
-export class MockedReservationService extends ReservationService{
+export class MockedReservationService extends ReservationService {
 }
 
-export class MockedReservationConnectionRepository extends ReservationConnectionRepository{
+export class MockedReservationConnectionRepository extends ReservationConnectionRepository {
   getConnectionById(id: number): Promise<ReservationConnection> {
     return Promise.resolve({
       id: 8,
-		  userId: "1d97c5c2-bcdd-4834-bbed-c23efaba06ca",
-		  reservationId: "13200fde-b393-4338-a943-16d2a6e321f6",
-		  accepted: "espera",
-    } as unknown as ReservationConnection )
+      userId: "1d97c5c2-bcdd-4834-bbed-c23efaba06ca",
+      reservationId: "13200fde-b393-4338-a943-16d2a6e321f6",
+      accepted: "espera",
+    } as unknown as ReservationConnection)
   }
   getConnectionByReservationId(id: string): Promise<ReservationConnection> {
     throw new Error('Method not implemented.');
@@ -250,15 +307,15 @@ export class MockedReservationConnectionRepository extends ReservationConnection
     throw new Error('Method not implemented.');
   }
   createReservationConnection(reservationConnection: ReservationConnectionCreationDTO): Promise<void> {
-    throw new Error('Method not implemented.');
+    return Promise.resolve(null);
   }
   updateReservation(id: number, accepted: boolean): Promise<void> {
     return Promise.resolve(null)
   }
-  
+
 }
 
-export class MockedFavoritesRepository extends FavoritesRepository{
+export class MockedFavoritesRepository extends FavoritesRepository {
   getAllByUserId(id: string): Promise<Favorite[]> {
     throw new Error('Method not implemented.');
   }
@@ -271,11 +328,11 @@ export class MockedFavoritesRepository extends FavoritesRepository{
   getByUserAndReservationId(userId: string, reservationId: string): Promise<Favorite> {
     throw new Error('Method not implemented.');
   }
-  
+
 }
 
-export class MockedMailService extends MailService{
-  sendUserConfirmation(){
+export class MockedMailService extends MailService {
+  sendUserConfirmation() {
     return Promise.resolve(null)
   }
 }
@@ -290,5 +347,5 @@ export class MockedEvaluationRepository extends EvaluationRepository {
   create(creationDTO: EvaluationCreationDTO): Promise<void> {
     throw new Error('Method not implemented.');
   }
-  
+
 }
