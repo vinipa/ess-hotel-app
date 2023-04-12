@@ -89,7 +89,13 @@ function ImageCard({
           : { cursor: "pointer" }
       }
     >
-      <img src={src} alt={alt} style={{ width: width, height: height }} />
+      <img
+        src={
+          "https://bestbuytravel.com.br/wp-content/uploads/2022/09/The-Fives-Beach-All-Senses-Inclusive-4-400x400.jpg"
+        }
+        alt={alt}
+        style={{ width: width, height: height }}
+      />
       {favoritePage ? (
         <>
           <div className="header">
