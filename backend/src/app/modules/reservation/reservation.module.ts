@@ -6,7 +6,7 @@ import { MailModule } from 'src/mail/mail.module';
 
 @Module({
   controllers: [ReservationController],
-  imports: [DatabaseModule, MailModule], 
+  imports: [DatabaseModule, MailModule],
   providers: [ReservationService],
 })
 export class ReservationModule {}

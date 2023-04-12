@@ -13,7 +13,9 @@ const validationSchema = () =>
     name: Yup.string().required("Um nome para a reserva é obrigatório"),
     city: Yup.string().required("A cidade é obrigatória"),
     street: Yup.string().required("O nome da rua é obrigatório"),
-    streetNumber: Yup.number().required("Digite o número do endereço"),
+    streetNumber: Yup.number()
+      .required("Digite o número do endereço")
+      .typeError("O número do local deve ser um número"),
     cep: Yup.string()
       .required("O cep é obrigatório")
       .min(8, "Digite um número válido de CEP")
@@ -29,30 +31,41 @@ const validationSchema = () =>
       ),
     guests: Yup.number()
       .required("O número de hóspedes é obrigatório")
+      .typeError("A quantidade de hóspedes deve ser um número")
+      .positive("A quantidade de hóspedes deve ser positiva")
       .min(1, "Deve haver pelo menos um hóspede"),
     budget: Yup.number()
-      .typeError("O orçamento deve ser um número")
-      .positive("O orçamento deve ser um valor positivo")
+      .required("O valor da diária é obrigatório")
+      .typeError("O valor da diária deve ser um número")
+      .positive("O valor da diária deve ser positivo")
       .min(0, "Digite um valor válido"),
     bedrooms: Yup.number()
       .typeError("O número de quartos deve ser um número")
-      .required("O número de quartos é obrigatório")
+      .required("A quantidade de quartos é obrigatório")
       .min(0, "Digite um valor válido"),
     beds: Yup.number()
       .required("O número de camas é obrigatório")
-      .typeError("O número de camas deve ser um número")
+      .typeError("A quantidade de camas deve ser um número")
       .min(0, "Digite um valor válido"),
     bathrooms: Yup.number()
       .required("O número de banheiros é obrigatório")
       .min(0, "Digite um valor válido")
-      .typeError("O número de banheiros deve ser um número"),
+      .typeError("A quantidade de banheiros deve ser um número"),
     additionalInfo: Yup.string().max(
       500,
       "A Descrição não podem ter mais de 500 caracteres"
     ),
   });
+/*
+  interface ReservationFormProps {
+    postCreateReservation?: (
+      values: FormValues,
+      helpers: FormikHelpers<FormValues>
+    ) => Promise<void>;
+  }
+ */
 
-const ReservationForm: React.FC = () => {
+export const ReservationForm: React.FC = () => {
   const initialValues: FormValues = {
     name: "",
     city: "",
@@ -76,14 +89,13 @@ const ReservationForm: React.FC = () => {
   const [modalDescription, setModalDescription] = useState("");
   const [registerSuccess, setregisterSuccess] = useState(false);
 
-  const { createElement, isLoading, isError, isSuccess } =
-    CreateReservationAPI();
 
   const postCreateReservation = useCallback(
     async (
       values: FormValues,
       { setSubmitting }: FormikHelpers<FormValues>
     ) => {
+      console.log("Submeti")
       const apiClient = new APIClient();
 
       try {
@@ -94,6 +106,7 @@ const ReservationForm: React.FC = () => {
           //@ts-ignore
           owner: id,
         });
+        
         setModal(() => true);
         setModalTittle(() => "Propriedade Cadastrada");
         setModalDescription(
@@ -129,6 +142,7 @@ const ReservationForm: React.FC = () => {
   //   }
   // };
 
+
   return (
     <div className="page">
       <Modal
@@ -148,14 +162,14 @@ const ReservationForm: React.FC = () => {
         validationSchema={validationSchema}
         onSubmit={postCreateReservation}
       >
-        {({ isSubmitting, handleSubmit }: any) => (
+        {({ isSubmitting}: any) => (
           <>
-            <Form className="container" onSubmit={handleSubmit}>
+            <Form className="container" >
               <div className="formInputContainer">
                 <div className="leftPage">
                   <span className="option">
                     <label htmlFor="name">Título</label>
-                    <Field type="text" name="name" />
+                    <Field type="text" name="name" id="name" />
                     <ErrorMessage
                       name="name"
                       component="div"
@@ -164,7 +178,7 @@ const ReservationForm: React.FC = () => {
                   </span>
                   <span className="option">
                     <label htmlFor="city">Cidade</label>
-                    <Field type="text" name="city" />
+                    <Field type="text" name="city" id="city"/>
                     <ErrorMessage
                       name="city"
                       component="div"
@@ -173,7 +187,7 @@ const ReservationForm: React.FC = () => {
                   </span>
                   <span className="option">
                     <label htmlFor="street">Rua</label>
-                    <Field type="text" name="street" />
+                    <Field type="text" name="street" id="street"/>
                     <ErrorMessage
                       name="street"
                       component="div"
@@ -181,8 +195,8 @@ const ReservationForm: React.FC = () => {
                     />
                   </span>
                   <span className="option">
-                    <label htmlFor="streetNumber">Númeroo</label>
-                    <Field type="number" name="streetNumber" />
+                    <label htmlFor="streetNumber">Número</label>
+                    <Field type="number" name="streetNumber" id="streetNumber" />
                     <ErrorMessage
                       name="streetNumber"
                       component="div"
@@ -191,7 +205,7 @@ const ReservationForm: React.FC = () => {
                   </span>
                   <span className="option">
                     <label htmlFor="cep">CEP</label>
-                    <Field type="text" name="cep" />
+                    <Field type="text" name="cep" id = "cep" />
                     <ErrorMessage
                       name="cep"
                       component="div"
@@ -206,6 +220,7 @@ const ReservationForm: React.FC = () => {
                       type="textarea"
                       as="textarea"
                       name="additionalInfo"
+                      id = "additionalInfo"
                     />
                     <ErrorMessage
                       name="additionalInfo"
@@ -215,9 +230,9 @@ const ReservationForm: React.FC = () => {
                   </span>
                   <span className="option">
                     <label htmlFor="guests" className="titleInput">
-                      Número de hóspedes
+                      Quantidade de hóspedes
                     </label>
-                    <Field type="number" name="guests" />
+                    <Field type="number" name="guests"  id = "guests"/>
                     <ErrorMessage
                       name="guests"
                       component="div"
@@ -228,7 +243,7 @@ const ReservationForm: React.FC = () => {
                 <div className="rightPage">
                   <span className="option">
                     <label htmlFor="budget">Preço da diária</label>
-                    <Field type="number" name="budget" />
+                    <Field type="number" name="budget" id="budget" />
                     <ErrorMessage
                       name="budget"
                       component="div"
@@ -237,7 +252,7 @@ const ReservationForm: React.FC = () => {
                   </span>
                   <span className="option">
                     <label htmlFor="bedrooms">Quartos</label>
-                    <Field type="number" name="bedrooms" />
+                    <Field type="number" name="bedrooms" id="bedrooms" />
                     <ErrorMessage
                       name="bedrooms"
                       component="div"
@@ -246,7 +261,7 @@ const ReservationForm: React.FC = () => {
                   </span>
                   <span className="option">
                     <label htmlFor="beds">Camas</label>
-                    <Field type="number" name="beds" />
+                    <Field type="number" name="beds" id="beds" />
                     <ErrorMessage
                       name="beds"
                       component="div"
@@ -255,7 +270,7 @@ const ReservationForm: React.FC = () => {
                   </span>
                   <span className="option">
                     <label htmlFor="bathrooms">Banheiros</label>
-                    <Field type="number" name="bathrooms" />
+                    <Field type="number" name="bathrooms"  id="bathrooms" />
                     <ErrorMessage
                       name="bathrooms"
                       component="div"
@@ -264,7 +279,7 @@ const ReservationForm: React.FC = () => {
                   </span>
                   <span className="option">
                     <label htmlFor="checkIn">Check-in</label>
-                    <Field type="date" name="checkIn" />
+                    <Field type="date" name="checkIn" id="checkIn" />
                     <ErrorMessage
                       name="checkIn"
                       component="div"
@@ -273,7 +288,7 @@ const ReservationForm: React.FC = () => {
                   </span>
                   <span className="option">
                     <label htmlFor="checkOut">Check-out</label>
-                    <Field type="date" name="checkOut" />
+                    <Field type="date" name="checkOut" id="checkOut" />
                     <ErrorMessage
                       name="checkOut"
                       component="div"
@@ -282,7 +297,7 @@ const ReservationForm: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <button type="submit" disabled={isSubmitting}>
+              <button name = "enviar" type="submit" disabled={isSubmitting}>
                 Enviar
               </button>
             </Form>
@@ -295,7 +310,7 @@ const ReservationForm: React.FC = () => {
 
 export default ReservationForm;
 
-{
+
   /* <span className="option">
 <Field
   type="file"
@@ -316,4 +331,4 @@ export default ReservationForm;
   className="error-message"
 />
 </span> */
-}
+
