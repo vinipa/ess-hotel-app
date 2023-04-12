@@ -4,7 +4,6 @@ const API_KEY = process.env.API_KEY || 'API_KEY';
 
 interface DecodedToken {
   idUser: string;
-  // Adicione outras informações do token que você queira validar aqui
 }
 
 export async function validateJWT(token: string): Promise<string | null> {

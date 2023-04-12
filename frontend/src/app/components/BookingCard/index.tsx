@@ -1,5 +1,4 @@
-import { RatingResponse } from '../../../services/api/interfaces';
-import { IconMinus, IconPlus, IconSelectedRatingStar, IconUnselectRatingStar, IconUserCircle } from '../../assets/icons';
+import { IconMinus, IconPlus } from '../../assets/icons';
 import { ClickableIcon, Row, SizedBoxHorizontal, SizedBoxVertical } from '../../utils/utils';
 import styled from "styled-components";
 import { Input } from '../Input';
@@ -41,17 +40,13 @@ function BookingCard({ guestNumber, radioHandler, setPlusIcon, setMinusIcon }: B
                     <DescriptionReservationMakeText>
                         Hóspedes
                     </DescriptionReservationMakeText>
-                    <ClickableIcon
-                        onClick={setPlusIcon}
-                    >
+                    <ClickableIcon onClick={setPlusIcon} data-testid="plus-icon">
                         {IconPlus}
                     </ClickableIcon>
                     <DescriptionReservationMakeText>
                         {guestNumber}
                     </DescriptionReservationMakeText>
-                    <ClickableIcon
-                        onClick={setMinusIcon}
-                    >
+                    <ClickableIcon onClick={setMinusIcon} data-testid="minus-icon">
                         {IconMinus}
                     </ClickableIcon>
                 </Row>
@@ -60,18 +55,20 @@ function BookingCard({ guestNumber, radioHandler, setPlusIcon, setMinusIcon }: B
                     Forma de Pagamento
                 </DescriptionReservationMakeText>
                 <SizedBoxVertical />
-                <RadioLabel>
-                    <input
-                        type="radio"
-                        name="payment"
-                        value="Pix"
-                        id="pix"
-                        onChange={radioHandler}
-                    />
-                    <DescriptionReservationMakeText>
-                        Pix
-                    </DescriptionReservationMakeText>
-                </RadioLabel>
+                <label htmlFor="pix">
+                    <RadioLabel>
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="Pix"
+                            id="pix"
+                            onChange={radioHandler}
+                        />
+                        <DescriptionReservationMakeText>
+                            Pix
+                        </DescriptionReservationMakeText>
+                    </RadioLabel>
+                </label>
                 <RadioLabel>
                     <input
                         type="radio"
