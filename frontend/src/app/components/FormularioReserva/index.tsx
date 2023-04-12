@@ -95,10 +95,12 @@ export const ReservationForm: React.FC = () => {
       values: FormValues,
       { setSubmitting }: FormikHelpers<FormValues>
     ) => {
-      console.log("Submeti")
+      console.log("Formulário Submetido")
       const apiClient = new APIClient();
 
       try {
+
+        
         const id = await apiClient.getIdByToken(session.token);
 
         await apiClient.createReservation({
