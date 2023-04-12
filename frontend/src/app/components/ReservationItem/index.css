@@ -50,6 +50,43 @@
     flex-direction: row;
     align-items: center;
     margin-right: 20px;
+    padding-bottom: 20px;
+  }
+
+  .reservationAceitar {
+    all: unset;
+    font-family: "Nunito Sans";
+    font-weight: bolder;
+    font-size: 14px;
+    width: 100%;
+    cursor: pointer;
+    padding: 12px 5px;
+    border-radius: 7px;
+    transition: background-color 0.3s ease-in-out;
+    background-color: rgba(45,49,56);
+    color: #FFFFFF;
+  }
+
+  .reservationAceitar:hover {
+    background-color: rgba(45,49,56,0.5);
+  }
+
+  .reservationCancelar {
+    all: unset;
+    font-family: "Nunito Sans";
+    font-weight: bolder;
+    font-size: 14px;
+    width: 100%;
+    cursor: pointer;
+    padding: 12px 5px;
+    border-radius: 7px;
+    transition: color 0.3s ease-in-out;
+    margin-right: 7px;
+    opacity: 60%;
+  }
+
+  .reservationCancelar:hover {
+    color: rgba(128, 128, 128, 0.5);
   }
   
   .reservationAction {
