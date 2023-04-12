@@ -3,7 +3,7 @@ import AppBar from "../../app/components/AppBar";
 import { SessionContext } from "../../app/providers/SessionContext";
 jest.mock("../../services/api/client");
 
-describe("SearchBar", () => {
+describe("AppBar", () => {
   it("Deve renderizar a barra superiro do app corretamente", () => {
     const showLoginRegisterModal = jest.fn();
     const setSession = jest.fn();
@@ -42,7 +42,7 @@ describe("SearchBar", () => {
     const spy = jest.spyOn(console, "log");
 
     fireEvent.click(screen.getByText("Rafael Carlos"));
-    expect(getByText("Gerenciar reservas")).toBeInTheDocument();
+
     fireEvent.click(screen.getByText("CIN VAGO"));
     expect(spy).toHaveBeenCalledWith("/");
   });

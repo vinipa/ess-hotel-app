@@ -4,7 +4,7 @@ import { SessionContext } from "../../app/providers/SessionContext";
 import { APIClient } from "../../services/api/client";
 jest.mock("../../services/api/client");
 
-describe("SearchBar", () => {
+describe("LoginRegisterModal", () => {
   it("Deve exibir o modal de registro de usuario comum corretamente", () => {
     const onRequestClose = jest.fn();
     const setSession = jest.fn();
