@@ -1,9 +1,7 @@
 import ReactModal from "react-modal";
 import "./index.css";
 import { IconClose } from "../../assets/icons";
-import { ChangeEvent, useState } from "react";
-import { APIClient } from "../../../services/api/client";
-import { useSession } from "../../providers/SessionContext";
+import useLoginRegister from "../../hooks/useLoginRegister";
 import Modal from "../Modal";
 
 interface LoginRegisterModalProps {
@@ -12,94 +10,22 @@ interface LoginRegisterModalProps {
   onRequestClose: () => void;
 }
 
-const API = new APIClient();
-
 export default function LoginRegisterModal({
   isOpen,
   newUser,
   onRequestClose,
 }: LoginRegisterModalProps) {
-  const { setSession } = useSession();
-  const [modal, setModal] = useState(false);
-  const [modalTittle, setModalTittle] = useState("");
-  const [modalDescription, setModalDescription] = useState("");
-
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    cpf: "",
-    password: "",
-    repeatPassword: "",
-    keepConnected: false,
-    termsAndConditions: false,
-    promotions: false,
-  });
-
-  const resetData = () => {
-    setData({
-      name: "",
-      email: "",
-      cpf: "",
-      password: "",
-      repeatPassword: "",
-      keepConnected: false,
-      termsAndConditions: false,
-      promotions: false,
-    });
-    onRequestClose();
-  };
-
-  const onChangeInputs = (e: ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
-
-  const onChangeInputsCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
-    setData(() => {
-      const retorno = {
-        ...data,
-        [e.target.name]: !data[e.target.name as keyof typeof data],
-      };
-      console.log(retorno);
-      return retorno;
-    });
-  };
-
-  const modalLogin = async (data: any) => {
-    try {
-      const response = await API.sendFormLogin(data);
-      if (data.keepConnected) {
-        window.localStorage.setItem("sessionData", JSON.stringify(response));
-      }
-      setSession(() => response);
-      if (response.token) {
-        resetData();
-      }
-    } catch {
-      setModalTittle("Falha no Login");
-      setModalDescription(
-        "Falha na realização do login, por favor verifique os dados e tente novamente."
-      );
-      setModal(true);
-    }
-  };
-
-  const modalRegister = async (data: any) => {
-    try {
-      await API.sendFormRegister(data);
-      setModalTittle("Registro realizado com sucesso.");
-      setModalDescription(
-        "Seu registro foi realizado com sucesso, por favor realize o login para ter total acesso a plataforma."
-      );
-      setModal(true);
-    } catch {
-      setModalTittle("Falha no registro.");
-      setModalDescription(
-        "Falha na realização do cadastro, por favor verifique os dados e tente novamente."
-      );
-      setModal(true);
-    }
-    resetData();
-  };
+  const {
+    modal,
+    modalTittle,
+    modalDescription,
+    data,
+    resetData,
+    onChangeInputs,
+    onChangeInputsCheckbox,
+    modalLogin,
+    modalRegister,
+  } = useLoginRegister(onRequestClose);
 
   return (
     <>
@@ -115,7 +41,7 @@ export default function LoginRegisterModal({
         <ReactModal
           isOpen={isOpen}
           onRequestClose={resetData}
-          parentSelector={() => document.querySelector("#root") as HTMLElement}
+          appElement={document.getElementById("root") as HTMLElement}
           className="modalLoginRegister"
           overlayClassName="overlayModalLoginRegister"
         >

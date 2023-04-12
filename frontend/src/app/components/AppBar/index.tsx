@@ -8,11 +8,10 @@ const pages = ["Home", "Cadastro", "Login"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 interface AppBarProps {
-  subtitle?: string;
   showLoginRegisterModal: (e: boolean) => void;
 }
 
-function ResponsiveAppBar({ subtitle, showLoginRegisterModal }: AppBarProps) {
+function ResponsiveAppBar({ showLoginRegisterModal }: AppBarProps) {
   const [showSideBar, setShowSideBar] = useState(false);
 
   const { session, setSession } = useSession();
@@ -25,7 +24,12 @@ function ResponsiveAppBar({ subtitle, showLoginRegisterModal }: AppBarProps) {
     <div className="AppBar">
       <div className="header">
         <button
-          onClick={() => window && (window.location.href = "/")}
+          onClick={() => {
+            if (window) {
+              console.log("/");
+              window.location.href = "/";
+            }
+          }}
           className="tittle"
         >
           CIN VAGO
@@ -63,7 +67,6 @@ function ResponsiveAppBar({ subtitle, showLoginRegisterModal }: AppBarProps) {
           </div>
         )}
       </div>
-      {subtitle ? <div className="subtitle">{subtitle}</div> : <></>}
     </div>
   );
 }
