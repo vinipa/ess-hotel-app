@@ -42,7 +42,12 @@ export default function SideBar({ closeSideBar }: SideBarProps) {
       <span className="iconUserCircle">{IconUserCircle}</span>
       {session.ADM ? (
         <>
-          <button className="sideBar_Option_Button">Gerenciar reservas</button>
+          <button
+            onClick={() => setHouter("/hospedagens-admin")}
+            className="sideBar_Option_Button"
+          >
+            Gerenciar Reservas
+          </button>
           <button
             onClick={() => setHouter("/user-data")}
             className="sideBar_Option_Button"
@@ -58,7 +63,12 @@ export default function SideBar({ closeSideBar }: SideBarProps) {
         </>
       ) : (
         <>
-          <button className="sideBar_Option_Button">Gerenciar reservas</button>
+          <button
+            onClick={() => setHouter("/hospedagens-guests")}
+            className="sideBar_Option_Button"
+          >
+            Gerenciar Reservas
+          </button>
           <button
             onClick={() => setHouter("/my-reservations")}
             className="sideBar_Option_Button"

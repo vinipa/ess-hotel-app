@@ -55,6 +55,7 @@ export default function SearchBar({ handleSearchCards }: PropsSearchBar) {
       />
       <input
         type="date"
+        placeholder="Data"
         value={date}
         onChange={(e) => setDate(e.target.value)}
       />
