@@ -20,7 +20,7 @@ describe("SearchBar", () => {
       </SessionContext.Provider>
     );
 
-    expect(getByText("Gerenciar reservas")).toBeInTheDocument();
+    expect(getByText("Gerenciar Reservas")).toBeInTheDocument();
     expect(getByText("Minhas reservas")).toBeInTheDocument();
     expect(getByText("Favoritos")).toBeInTheDocument();
     expect(getByText("Historico de reservas")).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe("SearchBar", () => {
       </SessionContext.Provider>
     );
 
-    expect(getByText("Gerenciar reservas")).toBeInTheDocument();
+    expect(getByText("Gerenciar Reservas")).toBeInTheDocument();
     expect(getByText("Informações pessoais")).toBeInTheDocument();
     expect(
       getByText("Cadastrar novo usuario administrativo")
