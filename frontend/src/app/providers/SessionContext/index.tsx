@@ -1,6 +1,6 @@
 import { useState, createContext, ReactNode, useContext } from "react";
 
-const SessionContext = createContext({} as SessionContextInterface);
+export const SessionContext = createContext({} as SessionContextInterface);
 
 const Provider = SessionContext.Provider;
 

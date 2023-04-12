@@ -18,6 +18,7 @@ export default function SideBar({ closeSideBar }: SideBarProps) {
     window.localStorage.removeItem("sessionData");
 
     closeSideBar();
+    console.log("Logout");
   };
 
   const closeSideBarAnimation = () => {
@@ -28,6 +29,7 @@ export default function SideBar({ closeSideBar }: SideBarProps) {
 
   const setHouter = (value: string) => {
     if (window) {
+      console.log(value);
       window.location.href = value;
     }
   };
@@ -81,7 +83,6 @@ export default function SideBar({ closeSideBar }: SideBarProps) {
           >
             Informações pessoais
           </button>
-          <button className="sideBar_Option_Button">Fale conosco</button>
         </>
       )}
       <button className="sideBar_Logout_Button" onClick={() => sessionLogout()}>
